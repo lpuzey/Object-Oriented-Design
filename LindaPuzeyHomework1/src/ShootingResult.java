@@ -1,57 +1,23 @@
-import java.util.LinkedList;
 
 public class ShootingResult implements IEvent{
 	
-	LinkedList<ShootingRound> rounds;
+	ShootingRound round1; //numbers of targets hit for round 1
+	ShootingRound round2; //numbers of targets hit for round 2
+	ShootingRound round3; //numbers of targets hit for round 3
+	ShootingRound round4; //numbers of targets hit for round 4
 	
-	ShootingResult(LinkedList<ShootingRound> rounds){
-		this.rounds = rounds;
+	ShootingResult(ShootingRound round1, ShootingRound round2, ShootingRound round3, ShootingRound round4){
+		this.round1 = round1;
+		this.round2 = round2;
+		this.round3 = round3;
+		this.round4 = round4;
 	}
-	/**
-	 * This method returns the totals of all of the targets that were hit for each round
-	 * 
-	 * @return total of numTargets per each round
-	 */
+	
+	//totals all of the targets that were hit for each round
 	public double pointsEarned() {
-		double acc = 0;
-		if (rounds == null || rounds.isEmpty()) {
-			return 0;
-		}
-		for (ShootingRound n : rounds) {
-			acc += n.numTargets;
-		}
-		return acc;
-
-	}
-	
-	/**
-	 * This method returns the total of the points across all laps in the list
-	 * @param form A boolean, true for standing and false for prone
-	 * @return sum of every lap
-	 */
-	public ShootingRound bestRoundByType(Boolean form) {
-		if(form) {
-			ShootingRound best= rounds.getFirst();
-			for (ShootingRound s : rounds) {
-				if(s.numTargets> best.numTargets) {
-					best = s;
-				}
-			}
-			return best;
-		}
-		if(!form) {
-			ShootingRound best= rounds.getFirst();
-			for (ShootingRound s : rounds) {
-				if(s.numTargets> best.numTargets) {
-					best = s;
-				}
-			}
-		return best;
-		}
-		else {
-			return null;
-		}
-		
+		double totalShootPoints;
+		totalShootPoints = (round1.numTargets + round2.numTargets + round3.numTargets + round4.numTargets);
+		return totalShootPoints;
 	}
 	
 }
